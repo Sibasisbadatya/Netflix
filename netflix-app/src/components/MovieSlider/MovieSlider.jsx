@@ -1,42 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
 import "./MovieSlider.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import MovieCard from "../MovieCard/MovieCard";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
+import { WATCH_IT_AGAIN, TRENDING_NOW, FOR_YOU } from "../../services/SliderConstants"
+import { useSelector } from "react-redux";
 
-const movieData = {
-    Title: "The Shawshank Redemption",
-    Year: "1994",
-    Rated: "R",
-    Released: "14 Oct 1994",
-    Runtime: "142 min",
-    Genre: "Drama",
-    Director: "Frank Darabont",
-    Writer: "Stephen King, Frank Darabont",
-    Actors: "Tim Robbins, Morgan Freeman, Bob Gunton",
-    Plot: "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
-    Language: "English",
-    Country: "United States",
-    Awards: "Nominated for 7 Oscars. 21 wins & 43 nominations total",
-    Poster: "https://m.media-amazon.com/images/M/MV5BMDFkYTc0MGEtZmNhMC00ZDIzLWFmNTEtODM1ZmRlYWMwMWFmXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg",
-    Ratings: [
-        { Source: "Internet Movie Database", Value: "9.3/10" },
-        { Source: "Rotten Tomatoes", Value: "91%" },
-        { Source: "Metacritic", Value: "81/100" }
-    ],
-    Metascore: "81",
-    imdbRating: "9.3",
-    imdbVotes: "2,559,562",
-    imdbID: "tt0111161",
-    Type: "movie",
-    DVD: "21 Dec 1999",
-    BoxOffice: "$28,767,189",
-    Production: "N/A",
-    Website: "N/A",
-    Response: "True"
-}
 
 const NextArrow = (props) => {
     const { className, style, onClick } = props;
@@ -46,7 +17,7 @@ const NextArrow = (props) => {
             style={{
                 ...style,
                 display: "block",
-                color: "red", // Change to any color you want
+                color: "red",
                 fontSize: "30px"
             }}
             onClick={onClick}
@@ -62,7 +33,7 @@ const PrevArrow = (props) => {
             style={{
                 ...style,
                 display: "block",
-                color: "red", // Change to any color you want
+                color: "red",
                 fontSize: "30px"
             }}
             onClick={onClick}
@@ -107,24 +78,51 @@ function MovieSlider({ data }) {
             }
         ]
     };
+    const [movies, setMovies] = useState([]);
+    const watchedMovies = useSelector((state) => state.recentlyWatched)
+    const trendingNow = useSelector((state) => state.trendingNow);
+    const imdbWiseMovie = useSelector((state) => state.imdbWiseMovie);
+    const totalMovies = useSelector((state) => state.totalMovies);
+    useEffect(() => {
+        switch (data.title) {
+            case WATCH_IT_AGAIN:
+                {
+                    setMovies(watchedMovies)
+                    break;
+                }
+            case TRENDING_NOW:
+                {
+                    setMovies(trendingNow);
+                    break;
+                }
+            case FOR_YOU:
+                {
+                    setMovies(imdbWiseMovie)
+                    break;
+                }
+            default: {
+                setMovies(totalMovies)
+                break;
+            }
+        }
+    }, [data.title]);
+    console.log("movies list in slider",movies);
+    
+
     return (
         <div className="slider-container">
             <h1 className="title"><b>{data.title}</b></h1>
 
             <Slider {...settings}>
-                <MovieCard movie={movieData} />
-                <MovieCard movie={movieData} />
-                <MovieCard movie={movieData} />
-                <MovieCard movie={movieData} />
-                <MovieCard movie={movieData} />
-                <MovieCard movie={movieData} />
-                <MovieCard movie={movieData} />
-                <MovieCard movie={movieData} />
-                <MovieCard movie={movieData} />
-                <MovieCard movie={movieData} />
-                <MovieCard movie={movieData} />
-                <MovieCard movie={movieData} />
-                <MovieCard movie={movieData} />
+                {
+                    (movies) && movies.slice(0, 10).map((movie, index) => {
+                        return (
+                            <MovieCard key={index} movie={movie} />
+                        )
+                    })
+                }
+
+
             </Slider>
         </div>
     );

@@ -1,13 +1,20 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .movie-details {
     position: relative;
     color: white;
-    height: 100vh;
+    height: 100dvh;
     display: flex;
     align-items: center;
     justify-content: center;
   }
   
   .movie-bg {
+    margin: auto;
     position: absolute;
     top: 0;
     left: 0;
