@@ -1,60 +1,86 @@
-import React, { useState } from "react";
-import { Offcanvas, Button } from "react-bootstrap";
-import { BsList } from "react-icons/bs";
-import "./NavBar.css"
-const OffCanvasMenu = () => {
+import React, { useEffect, useState, useContext } from "react";
+import { NavLink } from "react-router-dom";
+import "./NavBar.css";
+import NetFlixLogo from '../../assets/Netflix.png'
+import { FaSearch } from "react-icons/fa";
+import { IoMdClose } from "react-icons/io";
+import { Modal, Button, Form, Container } from "react-bootstrap";
+import searchContext from "../../contextAPI/contexts/searchContext";
+import { useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
+const NavBar = () => {
+    const navigate = useNavigate();
+    const movies = useSelector((state) => state.totalMovies);
     const [show, setShow] = useState(false);
+    const [searchTerm, setSearchTerm] = useState("");
+    const { isSearching, setIsSearching, setMovieSearchedFor } = useContext(searchContext);
+    const searchMovies = (movies, searchTerm) => {
+        if (!searchTerm) {
+            setMovieSearchedFor(movies);
+            return;
+        }
+        const searchedmovies = movies.filter(movie =>
+            movie.Title.toLowerCase().includes(searchTerm.toLowerCase())
+        );
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+        setMovieSearchedFor(searchedmovies);
+    };
 
+    useEffect(() => {
+        if (searchTerm === "") {
+            setIsSearching(false);
+        }
+    }, [searchTerm])
     return (
-        <>
-            {
-                (show == false) && (
-                    <Button
-                        style={{
-                            position: "fixed",
-                            top: "15px",
-                            left: "15px",
-                            zIndex: "1050",
-                            border: "none",
-                            background: "rgba(0, 0, 0, 0.8)",
-                            padding: "8px 12px",
-                            borderRadius: "5px",
-                            color: "white",
-                        }}
-                        onClick={handleShow}
-                    >
-                        <BsList size={30} />
-                    </Button>
-                )
-            }
+        <header className="header">
+            <img
+                src={NetFlixLogo}
+                alt="Netflix logo"
+                className="logo"
+                style={{ height: '100px' }}
+            />
 
+            <nav className="nav-links">
+                <NavLink to="/" activeClassName="active">Home</NavLink>
+                <NavLink to="/movies" activeClassName="active">Movies</NavLink>
+                <NavLink to="/latest" activeClassName="active">Latest</NavLink>
+                <NavLink to="/list" activeClassName="active">My List</NavLink>
+                <NavLink to="/favourites" activeClassName="active">Favourites</NavLink>
+            </nav>
 
-
-            <Offcanvas
-                show={show}
-                onHide={handleClose}
-                style={{
-                    background: "rgba(0, 0, 0, 0.85)",
-                    color: "white",
-                }}
-            >
-                <Offcanvas.Header closeButton>
-                    <Offcanvas.Title>Home</Offcanvas.Title>
-                </Offcanvas.Header>
-                <Offcanvas.Body>
-                    <ul className="menu-list">
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/movies">Movies</a></li>
-                        <li><a href="/favourites">Favourites</a></li>
-                        <li><a href="/popular">New & Popular</a></li>
-                    </ul>
-                </Offcanvas.Body>
-            </Offcanvas>
-        </>
+            <nav className="nav-actions">
+                <button onClick={() => {
+                    if (show) {
+                        setIsSearching(false);
+                        setSearchTerm("")
+                    }
+                    setShow(!show)
+                }} ><FaSearch />Search</button>
+                <img
+                    src="https://randomuser.me/api/portraits/women/3.jpg"
+                    alt="User profile"
+                    className="profile-image"
+                />
+                {show && (
+                    <div className="search-box">
+                        <Container>
+                            <Form.Control
+                                type="text"
+                                placeholder="Search movies..."
+                                value={searchTerm}
+                                onChange={(e) => {
+                                    navigate('/search');
+                                    searchMovies(movies, searchTerm);
+                                    setIsSearching(true);
+                                    setSearchTerm(e.target.value)
+                                }}
+                            />
+                        </Container>
+                    </div>
+                )}
+            </nav>
+        </header>
     );
 };
 
-export default OffCanvasMenu;
+export default NavBar;

@@ -78,36 +78,50 @@ function MovieSlider({ data }) {
             }
         ]
     };
-    const [movies, setMovies] = useState([]);
-    const watchedMovies = useSelector((state) => state.recentlyWatched)
-    const trendingNow = useSelector((state) => state.trendingNow);
-    const imdbWiseMovie = useSelector((state) => state.imdbWiseMovie);
-    const totalMovies = useSelector((state) => state.totalMovies);
-    useEffect(() => {
+    const movies = useSelector((state) => {
         switch (data.title) {
             case WATCH_IT_AGAIN:
-                {
-                    setMovies(watchedMovies)
-                    break;
-                }
+                return state.recentlyWatched;
             case TRENDING_NOW:
-                {
-                    setMovies(trendingNow);
-                    break;
-                }
+                return state.totalMovies.sort((a, b) => Number(b.Year) - Number(a.Year));
             case FOR_YOU:
-                {
-                    setMovies(imdbWiseMovie)
-                    break;
-                }
-            default: {
-                setMovies(totalMovies)
-                break;
-            }
+                return state.totalMovies.sort((a, b) => parseFloat(b.imdbRating) - parseFloat(a.imdbRating));
+            default:
+                return state.totalMovies;
         }
-    }, [data.title]);
-    console.log("movies list in slider",movies);
+    });
+    console.log("watched",movies);
     
+    // const watchedMovies = useSelector((state) => state.recentlyWatched)
+    // const totalMovies = useSelector((state) => state.totalMovies);
+    // useEffect(() => {
+    //     const trendingNow = totalMovies.sort((a, b) => Number(b.Year) - Number(a.Year));
+    //     const imdbWiseMovie = totalMovies.sort((a, b) => parseFloat(b.imdbRating) - parseFloat(a.imdbRating));
+    //     switch (data.title) {
+    //         case WATCH_IT_AGAIN:
+    //             {
+    //                 setMovies(watchedMovies)
+    //                 break;
+    //             }
+    //         case TRENDING_NOW:
+    //             {
+    //                 setMovies(trendingNow);
+    //                 break;
+    //             }
+    //         case FOR_YOU:
+    //             {
+    //                 setMovies(imdbWiseMovie)
+    //                 break;
+    //             }
+    //         default: {
+    //             setMovies(totalMovies)
+    //             break;
+    //         }
+    //     }
+    // }, [data.title]);
+    // console.log("movies list in slider", movies);
+
+    // console.log("recently watched", watchedMovies);
 
     return (
         <div className="slider-container">
@@ -121,8 +135,6 @@ function MovieSlider({ data }) {
                         )
                     })
                 }
-
-
             </Slider>
         </div>
     );
