@@ -1,17 +1,14 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Card, CardHeader, CardBody, CardTitle, CardText, Button } from 'react-bootstrap'
+import './MovieSpecificCard.css'
 import { FaPlay, FaHeart, FaPlus } from "react-icons/fa";
 import { FaInfoCircle } from "react-icons/fa";
 import { SiTicktick } from "react-icons/si";
 import { useDispatch } from 'react-redux'
 import { setList, setFavourite, addWatchedMovies } from "../../redux/actions/movieActions";
 import { Link } from 'react-router';
-import './MovieCard.css'
-const MovieCard = ({ movie }) => {
+const MovieSpecificCard = ({ movie }) => {
     const dispatch = useDispatch();
-    useEffect(() => {
-
-    }, [dispatch])
     return (
         <div className='card-div'>
             <Card
@@ -38,7 +35,7 @@ const MovieCard = ({ movie }) => {
             </Card>
             <span>{movie?.Title}</span>
         </div>
-    );
-};
+    )
+}
 
-export default MovieCard;
+export default MovieSpecificCard

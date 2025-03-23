@@ -9,4 +9,6 @@ export const SET_SUCCESS = "SET_SUCCESS"
 export const SET_ERROR = "SET_ERROR";
 export const SET_REQUEST = "SET_REQUEST";
 export const SEARCH_MOVIE_BY_ID = "SEARCH_MOVIE_BY_ID"
-export const ADD_WATCHED_MOVIE = "ADD_WATCHED_MOVIE"
+export const ADD_WATCHED_MOVIE = "ADD_WATCHED_MOVIE";
+export const REMOVE_FAVOURITE = "REMOVE_FAVOURITE";
+export const SET_LIST = "REMOVE_LIST";

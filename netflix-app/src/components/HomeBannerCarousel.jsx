@@ -5,10 +5,10 @@ import { FaPlay } from "react-icons/fa";
 import { FaInfoCircle } from "react-icons/fa";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";
-
+import { Link } from "react-router-dom";
 
 function HomeBannerCarousel() {
-  const slides = useSelector((state) => state.totalMovies).slice(0,5)
+  const slides = useSelector((state) => state.totalMovies).slice(0, 5)
   const navigate = useNavigate();
   return (
     <Carousel style={{ position: 'relative', width: '100%', backgroundColor: 'red' }} >
@@ -28,9 +28,8 @@ function HomeBannerCarousel() {
                 <p>{slide.Plot}</p>
                 <div className="btnDiv">
                   <button style={{ borderRadius: '5px', backgroundColor: 'white' }}><FaPlay style={{ fontSize: '30px' }} /><span>Play</span></button>
-                  <button style={{ borderRadius: '5px', backgroundColor: '#636e72' }} onClick={() => navigate(`/info/${slide.imdbID}`)}><FaInfoCircle style={{ fontSize: '30px' }} /><span>Info</span></button>
+                  <Link to={`/info/${slide.imdbID}`} style={{ borderRadius: '5px', backgroundColor: '#636e72',textDecoration:'none  ' }}><button><FaInfoCircle style={{ fontSize: '30px' }} /><span>Info</span></button></Link>
                 </div>
-
               </div>
             </Carousel.Caption>
           </div>
