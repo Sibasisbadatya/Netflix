@@ -11,6 +11,7 @@ import {
 
 import { movieDataKey, recentlyWatchedKey, currMovieKey } from "../../services/localKeys";
 import { movies } from "../../services/index.json";
+console.log("movies",movies);
 
 let movieData = localStorage.getItem(movieDataKey);
 let recentlyWatched = localStorage.getItem(recentlyWatchedKey);
@@ -19,6 +20,10 @@ let currMovieInfo = localStorage.getItem(currMovieKey);
 if (!movieData) {
     localStorage.setItem(movieDataKey, JSON.stringify(movies));
     movieData = JSON.stringify(movies);
+}
+if (!recentlyWatched) {
+    localStorage.setItem(recentlyWatchedKey, JSON.stringify([]));
+    recentlyWatched = JSON.stringify([]);
 }
 
 
