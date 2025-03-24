@@ -48,6 +48,14 @@ const MovieSpecificCarousel = ({ movies }) => {
         prevArrow: <PrevArrow />,
         responsive: [
             {
+                breakpoint: 1800,
+                settings: {
+                    slidesToShow: 5,
+                    slidesToScroll: 3,
+                    initialSlide: 1
+                }
+            },
+            {
                 breakpoint: 1320,
                 settings: {
                     slidesToShow: 4,

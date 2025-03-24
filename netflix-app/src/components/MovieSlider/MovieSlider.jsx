@@ -53,6 +53,14 @@ function MovieSlider({ data }) {
         prevArrow: <PrevArrow />,
         responsive: [
             {
+                breakpoint: 1800,
+                settings: {
+                    slidesToShow: 5,
+                    slidesToScroll: 3,
+                    initialSlide: 1
+                }
+            },
+            {
                 breakpoint: 1320,
                 settings: {
                     slidesToShow: 4,
@@ -143,7 +151,7 @@ function MovieSlider({ data }) {
     // console.log("recently watched", watchedMovies);
 
     return (
-        <div className="slider-container" style={{ backgroundColor: 'black', width: '95vw' }}>
+        <div className="slider-container" style={{ width: '95vw' }}>
             <h1 className="title"><b>{data.title}</b></h1>
 
             <Slider {...settings}>
