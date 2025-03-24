@@ -1,18 +1,130 @@
-
+.card-div {
+    width: 20vw;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1vh;
+    padding: 0px !important;
+}
 
 .movie-card {
-    color: white;
-    position: relative;
-    height: 25dvh;
-    width: 20dvw;
-    margin: 10px;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
+    position: relative;
+    background-color: black;
     padding: 0px !important;
 }
 
 .card-body {
-    height: 100%;
     width: 100%;
+    height: 100%;
     background-size: cover;
-    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+
+.movie-actions {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    padding: 1vh;
+}
+
+.movie-actions svg {
+    font-size: 2vw;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    color: white;
+}
+
+.movie-actions svg:hover {
+    transform: scale(1.2);
+}
+
+.info-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #1e90ff;
+}
+
+span {
+    font-size: 1.3vw;
+    font-weight: 600;
+    color: white;
+    text-align: center;
+    margin-top: 0.5vh;
+}
+
+@media (max-width: 1080px) {
+    .card-div {
+        width: 27vw;
+        height: 27vh;
+    }
+
+    .movie-actions svg{
+        font-size: 3vw;
+    }
+
+    span {
+        font-size: 1.6vw;
+    }
+}
+
+@media (max-width: 920px) {
+    .card-div {
+        width: 35vw;
+        height: 27vh;
+    }
+}
+
+@media (max-width: 768px) {
+    .card-div {
+        width: 35vw;
+        height: 25vh;
+    }
+
+    .movie-actions svg {
+        font-size: 4vw;
+    }
+
+    span {
+        font-size: 1.8vw;
+    }
+}
+
+@media (max-width: 580px) {
+    .card-div {
+        width: 43vw;
+        height: 25vh;
+    }
+
+    .movie-actions svg {
+        font-size: 3.5vw;
+    }
+
+    span {
+        font-size: 2vw;
+    }
+}
+@media (max-width: 520px) {
+    .card-div {
+        width: 43vw;
+        height: 25vh;
+    }
+
+    .movie-actions svg {
+        font-size: 3.5vw;
+    }
+
+    span {
+        font-size: 2vw;
+    }
 }

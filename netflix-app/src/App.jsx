@@ -22,8 +22,8 @@ function App() {
   const data = useSelector((state) => state);
   return (
     <>
-      <div style={{ width: '95vw', padding: '0px', boxSizing: 'border-box', minHeight: '100vh', backgroundColor: 'black', margin: 'auto' }}>
-        <NavBar/>
+      <div className='app-div' style={{ width: '100vw', padding: '0px', boxSizing: 'border-box', backgroundColor: '#181818', margin: 'auto',top:'-10px' }}>
+        <NavBar />
         <Routes>
           <Route path='/info/:imdbId' element={<MovieInfo />} />
           <Route path='/movies' element={<Movies />} />

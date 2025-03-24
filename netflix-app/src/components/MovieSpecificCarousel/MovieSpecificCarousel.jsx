@@ -1,11 +1,4 @@
 import React from 'react'
-import Carousel from "react-bootstrap/Carousel";
-// import CarouselImageDiv from "./CarouselComponents/CarouselImageDiv";
-// import './HomeBannerCarousel.css'
-import { FaPlay } from "react-icons/fa";
-import { FaInfoCircle } from "react-icons/fa";
-import { useNavigate } from "react-router";
-import { useSelector } from "react-redux";
 import MovieSpecificCard from '../MovieSpecificCard/MovieSpecificCard';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
@@ -55,45 +48,53 @@ const MovieSpecificCarousel = ({ movies }) => {
         prevArrow: <PrevArrow />,
         responsive: [
             {
-                breakpoint: 1024,
+                breakpoint: 1320,
+                settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 3,
+                    initialSlide: 1
+                }
+            },
+            {
+                breakpoint: 1080,
                 settings: {
                     slidesToShow: 3,
-                    slidesToScroll: 3,
-                    infinite: true,
-                    dots: true
+                    slidesToScroll: 2,
+                    initialSlide: 1
                 }
             },
             {
-                breakpoint: 600,
+                breakpoint: 920,
+                settings: {
+                    slidesToShow: 2.5,
+                    slidesToScroll: 2,
+                    initialSlide: 1
+                }
+            },
+            {
+                breakpoint: 780,
+                settings: {
+                    slidesToShow: 2.5,
+                    slidesToScroll: 2,
+                    initialSlide: 1
+                }
+            },
+            {
+                breakpoint: 580,
                 settings: {
                     slidesToShow: 2,
-                    slidesToScroll: 2,
-                    initialSlide: 2
-                }
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 1,
                     slidesToScroll: 1
                 }
             }
         ]
     };
     return (
-
-
-        <div>
-            <h2 >{movies.genre}</h2>
+        <div style={{ width: "90%" }}>
+            <h2>{movies.genre}</h2>
             <Slider {...settings}>
-                {
-                    (movies) && movies.movieList.slice(0, 10).map((movie, index) => {
-                        return (
-                            <MovieSpecificCard key={index} movie={movie} />
-                        )
-                    })
-                }
-
+                {movies.movieList.slice(0, 10).map((movie, index) => (
+                    <MovieSpecificCard key={index} movie={movie} />
+                ))}
             </Slider>
         </div>
     )

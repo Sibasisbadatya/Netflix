@@ -8,7 +8,7 @@ const Home = () => {
 
     return (
         <>
-            <div style={{ width: '100%', position: 'relative' }}>
+            <div style={{ width: '100vw', position: 'relative' }}>
                 <HomeBannerCarousel />
                 <MovieSlider data={{ title: WATCH_IT_AGAIN }} />
                 <MovieSlider data={{ title: TRENDING_NOW }} />

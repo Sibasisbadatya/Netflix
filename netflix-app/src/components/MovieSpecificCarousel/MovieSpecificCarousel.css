@@ -1,0 +1,8 @@
+.slick-slider {
+    width: 100%;
+}
+
+.slick-slide {
+    display: flex !important;
+    justify-content: center;
+}

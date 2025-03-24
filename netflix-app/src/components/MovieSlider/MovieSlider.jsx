@@ -53,26 +53,41 @@ function MovieSlider({ data }) {
         prevArrow: <PrevArrow />,
         responsive: [
             {
-                breakpoint: 1024,
+                breakpoint: 1320,
+                settings: {
+                    slidesToShow: 4,
+                    slidesToScroll: 3,
+                    initialSlide: 1
+                }
+            },
+            {
+                breakpoint: 1080,
                 settings: {
                     slidesToShow: 3,
-                    slidesToScroll: 3,
-                    infinite: true,
-                    dots: true
+                    slidesToScroll: 2,
+                    initialSlide: 1
                 }
             },
             {
-                breakpoint: 600,
+                breakpoint: 920,
+                settings: {
+                    slidesToShow: 2.5,
+                    slidesToScroll: 2,
+                    initialSlide: 1
+                }
+            },
+            {
+                breakpoint: 780,
+                settings: {
+                    slidesToShow: 2.5,
+                    slidesToScroll: 2,
+                    initialSlide: 1
+                }
+            },
+            {
+                breakpoint: 580,
                 settings: {
                     slidesToShow: 2,
-                    slidesToScroll: 2,
-                    initialSlide: 2
-                }
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 1,
                     slidesToScroll: 1
                 }
             }
@@ -81,7 +96,11 @@ function MovieSlider({ data }) {
     const movies = useSelector((state) => {
         switch (data.title) {
             case WATCH_IT_AGAIN:
-                return state.recentlyWatched;
+                return state.recentlyWatched
+                    .map(movie => ({ ...movie, lastWatch: new Date(movie.lastWatch) }))
+                    .sort((a, b) => b.lastWatch - a.lastWatch)
+                    .slice(0, 3);
+
             case TRENDING_NOW:
                 return state.totalMovies.sort((a, b) => Number(b.Year) - Number(a.Year));
             case FOR_YOU:
@@ -90,8 +109,8 @@ function MovieSlider({ data }) {
                 return state.totalMovies;
         }
     });
-    console.log("watched",movies);
-    
+    console.log("watched", movies);
+
     // const watchedMovies = useSelector((state) => state.recentlyWatched)
     // const totalMovies = useSelector((state) => state.totalMovies);
     // useEffect(() => {
@@ -124,7 +143,7 @@ function MovieSlider({ data }) {
     // console.log("recently watched", watchedMovies);
 
     return (
-        <div className="slider-container">
+        <div className="slider-container" style={{ backgroundColor: 'black', width: '95vw' }}>
             <h1 className="title"><b>{data.title}</b></h1>
 
             <Slider {...settings}>

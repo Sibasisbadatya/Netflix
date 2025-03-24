@@ -26,20 +26,23 @@ const MovieInfoComponent = () => {
 
   return (
     <div className="movie-details">
-      <div className="movie-bg" style={{ backgroundImage: `url(${currMovie?.Poster})` }}></div>
+      <div className="movie-bg">
+        <img src={currMovie?.Poster} />
+      </div>
 
       <Container className="content">
         <Row>
           <Col md={6} className="movie-info">
-            <h1 className="movie-title">{currMovie?.Title}</h1>
-            <p className="movie-meta">
-              <span className="badge">⭐ {currMovie?.imdbRating}</span> | {currMovie?.Genre} | {currMovie?.Year}
-            </p>
-            <p className="movie-plot">{currMovie?.Plot}</p>
-            <div className="movie-persons">
-              <span><b>DIrected By :</b>{currMovie?.Director}</span>
+            <div className="movie-title">{currMovie?.Title}</div>
+            <div className="movie-meta">
+              <span className="badge"> ⭐ {currMovie?.imdbRating} </span> | <span className="badge">{currMovie?.Rated}</span> | <span className="badge">{currMovie?.Genre}</span> | <span className="badge"> {currMovie?.Released} </span>
             </div>
-            <div className="movie-actions">
+            <div className="movie-plot">{currMovie?.Plot}</div>
+            <div className="movie-persons">
+              <span><b>Starring  : </b>{currMovie?.Actors}</span>
+              <span style={{alignSelf:'flex-start'}}><b>Creators  : </b>{currMovie?.Director}{currMovie?.Writters}</span>
+            </div>
+            <div className="movie-btns">
               <Button onClick={() => dispatch(addWatchedMovies(currMovie))} variant="light" className="action-btn" ><FaPlay /> Play</Button>
               <Button variant="light" onClick={() => dispatch(setFavourite(currMovie, currMovie?.isFav == true ? false : true))} className="action-btn"><FaHeart style={{ color: currMovie?.isFav == true ? '#FC427B' : '#ffffff' }} /> Like</Button>
               <Button variant="light" onClick={() => dispatch(setList(currMovie, currMovie?.isListAdded == true ? false : true))} className="action-btn">

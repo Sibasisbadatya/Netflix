@@ -29,7 +29,6 @@ const MovieSpecificCard = ({ movie }) => {
                         <Link to={`/info/${movie?.imdbID}`} style={{ textDecoration: 'none', color: 'white' }}>
                             <FaInfoCircle className='info-icon' />
                         </Link>
-
                     </div>
                 </div>
             </Card>

@@ -1,13 +1,13 @@
 import React from "react";
 import { Image } from "react-bootstrap";
 import './CarouselImage.css'
-function CarouselImageDiv({ text,image }) {
+function CarouselImageDiv({ movie }) {
   return (
     <div className="carousel-image-container">
       <img
         className="movie-img"
-        src={image} 
-        alt={text}
+        src={movie.Poster} 
+        alt={movie.Title}
       />
     </div>
   );

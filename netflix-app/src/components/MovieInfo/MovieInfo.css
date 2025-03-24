@@ -5,56 +5,141 @@
 }
 
 .movie-details {
-    position: relative;
-    color: white;
-    height: 100dvh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+  position: relative;
+  color: white;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.movie-bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.8) 40%, rgba(0, 0, 0, 0) 100%);
+}
+
+.movie-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(100%);
+}
+
+.movie-bg img {
+  height: 100%;
+  width: 100%;
+}
+
+.content {
+  position: absolute;
+  height: 100%;
+  width: 60%;
+  top:10%;
+  left: 5%;
+  padding: 20px;
+  z-index: 2;
+}
+
+.movie-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items:flex-start;
+  gap: 20px;
+  height: 100%;
+  width: 100%;
+  padding: 10px;
+  position: relative;
+}
+
+.movie-title {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.movie-meta {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  height: 10%;
+}
+.movie-meta span{
+  color: #a4b0be;
+}
+
+.movie-plot {
+  font-size: 1rem;
+  max-width: 500px;
+  height: 30%;
+}
+
+.movie-persons {
+  display: flex;
+  flex-direction: column;
+  justify-items: flex-start;
+  height: 20%;
+  font-size: 1.2rem;
+}
+.movie-persons b{
+  color: #a4b0be;
+}
+
+.movie-btns {
+  display: flex;
+  gap: 10px;
+  height: 20%;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 1.2rem;
+  padding: 10px 15px;
+  color: white;
+  background: none;
+  border: 2px solid #57606f;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease-in-out;
+}
+
+.action-btn:hover {
+  background-color: white;
+}
+
+.play-btn {
+  background-color: #ff0000;
+}
+
+.play-btn:hover {
+  background-color: #cc0000;
+}
+
+.like-btn {
+  background-color: #222;
+}
+
+.like-btn:hover {
+  background-color: #444;
+}
+
+.list-btn {
+  background-color: #444;
+}
+
+.list-btn:hover {
+  background-color: #666;
+}
+
+@media (min-width: 780px) and (max-width: 920px) {
   
-  .movie-bg {
-    margin: auto;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    filter: brightness(40%);
-  }
-  
-  .content {
-    position: relative;
-    z-index: 2;
-  }
-  
-  .movie-title {
-    font-size: 3rem;
-    font-weight: bold;
-  }
-  
-  .movie-meta {
-    font-size: 1.2rem;
-    margin-bottom: 10px;
-  }
-  
-  .movie-plot {
-    font-size: 1rem;
-    max-width: 500px;
-    margin-bottom: 20px;
-  }
-  
-  .movie-actions {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .action-btn {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 1.5rem;
-  }
-  
+}

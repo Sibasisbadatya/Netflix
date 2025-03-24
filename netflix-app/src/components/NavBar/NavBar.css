@@ -1,4 +1,8 @@
-
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
 
 header {
   height: 10dvh;
@@ -8,15 +12,23 @@ header {
   background-color: black;
   top: 0rem;
   z-index: 100;
+  width: 100dvw;
+  padding: 0px 90px 0px 10px;
 }
 
-header .logo {
+
+.smallLogo {
+  display: none;
 }
 
 header a {
   text-decoration: none;
   color: white;
   margin-left: 16px;
+}
+
+header a:hover {
+  color: red !important;
 }
 
 header button {
@@ -32,6 +44,14 @@ nav {
   font-size: 1rem;
 }
 
+.responsive-search {
+  display: none;
+}
+
+.active {
+  color: red;
+}
+
 nav ul {
   list-style: none;
 }
@@ -40,7 +60,7 @@ nav li {
   display: inline-block;
 }
 
-nav + nav {
+nav+nav {
   margin-left: auto;
 }
 
@@ -53,6 +73,38 @@ nav + nav {
   height: 40px;
   border-radius: 4px;
 }
-.search-modal{
-  
+
+@media (max-width: 1080px) {
+  .search-word {
+    display: none;
+  }
+
+  .nav-actions button {
+    width: fit-content;
+  }
+
+  .smallLogo {
+    display: block;
+  }
+
+  .bigLogo {
+    display: none;
+  }
+
+  header {
+    padding: 0px 0px 0px 10px;
+  }
+}
+
+@media (max-width: 780px) {
+  .responsive-search {
+    display: block;
+    position: sticky;
+    top: 5rem;
+    z-index: 10;
+  }
+
+  .search-box {
+    display: none;
+  }
 }

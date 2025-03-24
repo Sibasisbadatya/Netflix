@@ -2,6 +2,7 @@ import React, { use, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import MovieSpecificCarousel from '../../components/MovieSpecificCarousel/MovieSpecificCarousel';
 import MovieSpecificCard from '../../components/MovieSpecificCard/MovieSpecificCard';
+import '../SpecificMovie.css'
 const Favourite = () => {
 
     const allMovies = useSelector((state) => state.totalMovies) || [];
