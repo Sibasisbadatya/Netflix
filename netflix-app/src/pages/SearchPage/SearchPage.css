@@ -1,0 +1,12 @@
+.genre-menu{
+    background-color: #181818;
+}
+#genre-dropdown {
+    background-color: #181818;
+}
+.filter-container{
+    position: fixed;
+    right: 2rem;
+    top: 5rem;
+    z-index: 10;
+}

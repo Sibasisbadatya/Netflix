@@ -1,15 +1,21 @@
-/* 
-  .title{
-    font-weight: 700;
-    margin-top: 50px;
-    margin-bottom: 20px;
-    text-align: left;
-  }
 
-   */
-   .play-icon{
+.play-icon {
+  margin: auto;
+}
+
+.slider-container {
+  width: 95%;
+  margin: auto;
+}
+
+.slider-title {
+  text-align: left;
+  margin-bottom: 3rem;
+  margin-top: 2rem;
+}
+@media (max-width: 780px) {
+  .slider-container {
+    width: 90%;
     margin: auto;
-   }
-   .slider-container{
-    margin: auto;
-   }
+  }
+}

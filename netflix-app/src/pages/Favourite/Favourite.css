@@ -3,3 +3,6 @@
     flex-wrap: wrap;
     justify-content: center;
 }
+.fav-page{
+    min-height: 80vh;
+}

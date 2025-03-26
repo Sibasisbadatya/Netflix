@@ -5,7 +5,7 @@ import { SiTicktick } from "react-icons/si";
 import { useParams } from "react-router-dom";
 import "./MovieInfo.css";
 import { useDispatch, useSelector } from "react-redux";
-import { requestData, setCurrentMovie, setError, setSuccess, setList, setFavourite, addWatchedMovies } from "../../redux/actions/movieActions";
+import { setCurrentMovie, setList, setFavourite, addWatchedMovies } from "../../redux/actions/movieActions";
 const MovieInfoComponent = () => {
   const { imdbId } = useParams();
   const dispatch = useDispatch();
@@ -13,11 +13,11 @@ const MovieInfoComponent = () => {
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        dispatch(requestData());
+        // dispatch(requestData());
         dispatch(setCurrentMovie(imdbId))
-        dispatch(setSuccess());
+        // dispatch(setSuccess());
       } catch (err) {
-        dispatch(setError(err.message));
+        // dispatch(setError(err.message));
       }
     };
 
@@ -40,7 +40,7 @@ const MovieInfoComponent = () => {
             <div className="movie-plot">{currMovie?.Plot}</div>
             <div className="movie-persons">
               <span><b>Starring  : </b>{currMovie?.Actors}</span>
-              <span style={{alignSelf:'flex-start'}}><b>Creators  : </b>{currMovie?.Director}{currMovie?.Writters}</span>
+              <span style={{ alignSelf: 'flex-start' }}><b>Creators  : </b>{currMovie?.Director}{currMovie?.Writters}</span>
             </div>
             <div className="movie-btns">
               <Button onClick={() => dispatch(addWatchedMovies(currMovie))} variant="light" className="action-btn" ><FaPlay /> Play</Button>

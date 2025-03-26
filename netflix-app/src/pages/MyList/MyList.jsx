@@ -1,39 +1,39 @@
-import React, { use, useEffect, useState } from 'react'
+import React, { use, useContext, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import MovieSpecificCarousel from '../../components/MovieSpecificCarousel/MovieSpecificCarousel';
 import MovieSpecificCard from '../../components/MovieSpecificCard/MovieSpecificCard';
 import '../SpecificMovie.css'
+import './MyList.css'
+import themeContext from '../../contextAPI/contexts/themeContext';
+import CommonPageEnding from '../CommonPageEnding/CommonPageEnding';
 const MyList = () => {
     const allMovies = useSelector((state) => state.totalMovies) || [];
     const [myList, setFavMovies] = useState([]);
+    const {isDark} = useContext(themeContext)
     useEffect(() => {
         const movies = allMovies.filter((movie) => movie.isListAdded === true);
-
-        console.log("fav Movies", movies);
 
         setFavMovies(movies);
     }, [allMovies])
 
-    console.log("Fav List Movies", allMovies);
 
     return (
         <>
-            <div className='movie-page'>
-                <div className='movie-heading'>
-                    <h1>Movies</h1>
-                    <h3>
-                        Movies move us like nothing else can, whether they’re scary, funny, dramatic, romantic or anywhere in-between. So many titles, so much to experience.
-                    </h3>
+            <div className='list-page'>
+                <div className={`movie-heading ${!isDark && "light-movie-heading"}`}>
+                    <h1>My List</h1>
+                    <div>
+                        Your personal collection of must-watch movies and shows. Whether it's a timeless classic or a new discovery, keep all your favorites in one place and watch anytime.
+                    </div>
                 </div>
                 <div className='movies-body'>
                     {
                         myList.map((moviesList, index) => {
-                            console.log("each fav movie", moviesList);
                             return <MovieSpecificCard key={index} movie={moviesList} />
                         })
                     }
                 </div>
             </div>
+            <CommonPageEnding/>
 
         </>
     )

@@ -6,3 +6,21 @@
     display: flex !important;
     justify-content: center;
 }
+
+
+.genre-title {
+    font-size: 30px;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    text-align: left;
+    font-size: 3rem;
+    color: aliceblue;
+}
+.light-genre-title {
+    color: #e50914;
+}
+@media (max-width: 780px) {
+    .genre-title {
+        font-size: 2rem;
+    }
+}

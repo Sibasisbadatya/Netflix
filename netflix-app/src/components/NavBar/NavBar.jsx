@@ -4,16 +4,20 @@ import "./NavBar.css";
 import NetFlixLogo from '../../assets/Netflix.png'
 import NetFlixSmallLogo from '../../assets/NetSmall.png'
 import { FaSearch } from "react-icons/fa";
-import { Modal, Button, Form, Container } from "react-bootstrap";
+import { MdDarkMode } from "react-icons/md";
+import { CiLight } from "react-icons/ci";
+import { Form, Container } from "react-bootstrap";
 import searchContext from "../../contextAPI/contexts/searchContext";
 import { useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
+import themeContext from "../../contextAPI/contexts/themeContext";
 const NavBar = () => {
     const navigate = useNavigate();
     const movies = useSelector((state) => state.totalMovies);
     const [show, setShow] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
     const { isSearching, setIsSearching, setMovieSearchedFor } = useContext(searchContext);
+    const { isDark, setTheme } = useContext(themeContext)
     const searchMovies = (movies, searchTerm) => {
         if (!searchTerm) {
             setMovieSearchedFor(movies);
@@ -57,13 +61,21 @@ const NavBar = () => {
                 </nav>
 
                 <nav className="nav-actions">
-                    <button onClick={() => {
+                    <button style={{ border: 'none' }} onClick={() => {
                         if (show) {
                             setIsSearching(false);
                             setSearchTerm("")
                         }
                         setShow(!show)
-                    }} ><FaSearch /><span className="search-word">Search</span></button>
+                    }} ><FaSearch className="search-icon" /><span className="search-word">Search</span></button>
+                    {
+                        isDark ? (
+                            <CiLight onClick={() => setTheme(false)} color={'white'} className="theme-icon" />
+                        ) : (
+                            <MdDarkMode onClick={() => setTheme(true)} color={'white'} className="theme-icon" />
+                        )
+                    }
+
                     <img
                         src="https://randomuser.me/api/portraits/women/3.jpg"
                         alt="User profile"
@@ -76,8 +88,11 @@ const NavBar = () => {
                                     type="text"
                                     placeholder="Search movies..."
                                     value={searchTerm}
-                                    onChange={(e) => {
+                                    onFocus={(e) => {
+                                        setMovieSearchedFor(movies);
                                         navigate('/search');
+                                    }}
+                                    onChange={(e) => {
                                         searchMovies(movies, searchTerm);
                                         setIsSearching(true);
                                         setSearchTerm(e.target.value)
@@ -97,8 +112,11 @@ const NavBar = () => {
                                 type="text"
                                 placeholder="Search movies..."
                                 value={searchTerm}
-                                onChange={(e) => {
+                                onFocus={(e) => {
+                                    setMovieSearchedFor(movies);
                                     navigate('/search');
+                                }}
+                                onChange={(e) => {
                                     searchMovies(movies, searchTerm);
                                     setIsSearching(true);
                                     setSearchTerm(e.target.value)

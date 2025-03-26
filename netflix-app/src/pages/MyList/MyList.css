@@ -1,5 +1,9 @@
-.movies-body{
+.movies-body {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+.list-page {
+    min-height: 80vh;
 }

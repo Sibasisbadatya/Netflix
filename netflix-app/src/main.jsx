@@ -8,12 +8,15 @@ import { Provider } from "react-redux";
 import store from './redux/store.js';
 import SearchProvider from './contextAPI/providers/SearchProvider.jsx'
 import ThemeProvider from './contextAPI/providers/ThemeProvider.jsx';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary.jsx';
 createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <BrowserRouter>
       <SearchProvider>
         <ThemeProvider>
-          <App />
+          <ErrorBoundary>
+            <App />
+          </ErrorBoundary>
         </ThemeProvider>
       </SearchProvider>
     </BrowserRouter>

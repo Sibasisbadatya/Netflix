@@ -1,0 +1,45 @@
+.movie-page {
+    min-height: 80vh;
+}
+
+.movie-heading {
+    width: 50vw;
+    height: 30vh;
+    box-sizing: border-box;
+    padding-left: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+.movie-heading h1 {
+    font-weight: 900;
+    font-size: 5rem;
+    color: aliceblue;
+}
+
+.movie-heading div {
+    font-size: 1.5rem;
+    align-self: flex-start;
+    color: aliceblue;
+}
+
+.show-more-btn {
+    background-color: red;
+    border: none;
+    width: 40vw;
+    margin: auto;
+    margin-top: 5rem;
+}
+
+.main-movies-body {
+    width: 100vw;
+    margin: auto;
+}
+
+@media (max-width: 1080px) {
+    .main-movies-body {
+        width: 95vw;
+    }
+}

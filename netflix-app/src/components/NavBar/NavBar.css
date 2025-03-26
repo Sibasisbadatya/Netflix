@@ -14,6 +14,7 @@ header {
   z-index: 100;
   width: 100dvw;
   padding: 0px 90px 0px 10px;
+  overflow: hidden;
 }
 
 
@@ -48,9 +49,10 @@ nav {
   display: none;
 }
 
-.active {
-  color: red;
+nav a.active {
+  color: red !important;
 }
+
 
 nav ul {
   list-style: none;
@@ -66,6 +68,16 @@ nav+nav {
 
 .search {
   margin-left: auto;
+}
+
+.theme-icon {
+  font-size: 30px;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.search-box {
+  transition: 0.3s ease-in-out;
 }
 
 .profile-image {
@@ -99,6 +111,7 @@ nav+nav {
 @media (max-width: 780px) {
   .responsive-search {
     display: block;
+    width: 50vw;
     position: sticky;
     top: 5rem;
     z-index: 10;
@@ -106,5 +119,37 @@ nav+nav {
 
   .search-box {
     display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav-links a {
+    font-size: 0.8rem;
+  }
+
+  .header {
+    padding: 0px;
+  }
+
+  header a {
+    margin-left: 10px;
+  }
+}
+
+@media (max-width: 500px) {
+  .nav-links a {
+    font-size: 0.8rem;
+  }
+
+  .header {
+    padding: 0px;
+  }
+
+  header a {
+    margin-left: 10px;
+  }
+
+  .logo {
+    margin: 0px;
   }
 }
