@@ -152,4 +152,7 @@ nav+nav {
   .logo {
     margin: 0px;
   }
+  .profile-image{
+    display: none;
+  }
 }

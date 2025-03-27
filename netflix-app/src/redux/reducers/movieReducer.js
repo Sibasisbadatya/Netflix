@@ -2,9 +2,10 @@ import {
     SET_FAVOURITE,
     SET_ERROR,
     SET_SUCCESS,
-    SET_LOADING,
+    SET_REQUEST,
     SEARCH_MOVIE_BY_ID,
     ADD_WATCHED_MOVIE,
+    REMOVE_FAVOURITE,
     SET_LIST
 } from "../actions/actionTypes/actionTypes";
 
@@ -42,22 +43,20 @@ const initialState = {
     currMovieInfo: currMovieInfo ? JSON.parse(currMovieInfo) : null
 };
 
+
 export const movieReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_LOADING:
-            return { ...state, loading: true, error: "" };
+        case SET_REQUEST:
+            return { ...state, loading: true };
 
         case SET_LIST:
-            return { ...state, totalMovies: action.payload, loading: false };
-
-        case SET_SUCCESS:
-            return { ...state, loading: false };
-
-        case SET_ERROR:
-            return { ...state, error: action.payload, loading: false };
-
-        case ADD_WATCHED_MOVIE:
-            return { ...state, recentlyWatched: action.payload };
+            return {
+                ...state,
+                totalMovies: action.payload,
+                currMovieInfo: state.currMovieInfo && state.currMovieInfo.imdbID === action.movieId
+                    ? { ...state.currMovieInfo, isListAdded: action.flag }
+                    : state.currMovieInfo
+            };
 
         case SET_FAVOURITE:
             return {
@@ -67,6 +66,15 @@ export const movieReducer = (state = initialState, action) => {
                     ? { ...state.currMovieInfo, isFav: action.flag }
                     : state.currMovieInfo
             };
+
+        case ADD_WATCHED_MOVIE:
+            return { ...state, recentlyWatched: action.payload };
+
+        case SET_ERROR:
+            return { ...state, error: action.payload, loading: false };
+
+        case SET_SUCCESS:
+            return { ...state, loading: false };
 
         case SEARCH_MOVIE_BY_ID: {
             const movie = state.totalMovies.find(movie => movie.imdbID === action.payload) || null;

@@ -1,27 +1,21 @@
 import {
     SET_FAVOURITE,
     ADD_WATCHED_MOVIE,
-    SET_LOADING,
+    SET_REQUEST,
     SET_SUCCESS,
     SET_ERROR,
     SEARCH_MOVIE_BY_ID,
+    REMOVE_FAVOURITE,
     SET_LIST
 } from "./actionTypes/actionTypes";
 
 import { movieDataKey, recentlyWatchedKey, currMovieKey } from "../../services/localKeys";
-import { movies } from "../../services/index.json";
-export const fetchMovies = () => {
-    return (dispatch) => {
-        dispatch({ type: SET_LOADING });
 
-        try {
-            dispatch({ type: SET_LIST, payload: movies });
-            dispatch({ type: SET_SUCCESS });
-        } catch (error) {
-            dispatch({ type: SET_ERROR, payload: "Failed to load movies" });
-        }
-    };
-};
+
+export const requestData = () => ({ type: SET_REQUEST });
+export const setSuccess = () => ({ type: SET_SUCCESS });
+export const setError = (err) => ({ type: SET_ERROR, payload: err });
+
 export const addWatchedMovies = (movie) => {
     const watchedMovies = JSON.parse(localStorage.getItem(recentlyWatchedKey)) || [];
     if (!watchedMovies.some((watchedMovie) => watchedMovie.imdbID === movie.imdbID)) {
