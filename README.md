@@ -113,7 +113,7 @@ Install my-project with npm
 ## Deployment
 
 This project was built using **React** and deployed on **Vercel** for seamless hosting and performance.  
-Follow https://youtu.be/VigFI4TuwzI?si=ONb25aPOjCAhGQEw
+Open https://github.com/Sibasisbadatya/Netflix to access my project and hosted link.
 
  # Project structure of App
 -----------------------------------------
