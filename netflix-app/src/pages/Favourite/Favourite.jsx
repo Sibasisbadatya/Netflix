@@ -29,7 +29,7 @@ const Favourite = () => {
                             <MovieSpecificCard key={index} movie={movie} />
                         ))
                     ) : (
-                        <h2>No Favourite Movies</h2>
+                        <h2 style={{ color: isDark ? 'white' : '#e50914' }}>No Favourite Movies</h2>
                     )}
                 </div>
             </div>

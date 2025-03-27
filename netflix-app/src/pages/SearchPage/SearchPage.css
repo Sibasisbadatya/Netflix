@@ -1,10 +1,29 @@
-.genre-menu{
+.genre-menu {
     background-color: #181818;
+    overflow: scroll;
+    height: 60vh;
+    width: 15vw;
+    position: relative;
 }
+
+.genre-menu:hover {}
+
+.genre-item {
+    height: 40px;
+    border-top: 1px solid white;
+    width: 100%;
+}
+
+.genre-item span:hover {
+    color: black;
+}
+
 #genre-dropdown {
+    height: 40px;
     background-color: #181818;
 }
-.filter-container{
+
+.filter-container {
     position: fixed;
     right: 2rem;
     top: 5rem;

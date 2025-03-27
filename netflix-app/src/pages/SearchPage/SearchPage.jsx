@@ -1,5 +1,5 @@
-import React, { useContext, useState,useMemo } from 'react';
-import { Dropdown, DropdownButton, NavDropdown } from 'react-bootstrap';
+import React, { useContext, useState, useEffect } from 'react';
+import { Dropdown, NavDropdown } from 'react-bootstrap';
 import MovieSpecificCard from '../../components/MovieSpecificCard/MovieSpecificCard';
 import './SearchPage.css';
 import themeContext from '../../contextAPI/contexts/themeContext';
@@ -12,23 +12,26 @@ const SearchPage = () => {
     const [selectedFilter, setSelectedFilter] = useState('All');
     const [selectedGenre, setSelectedGenre] = useState('All');
     const genres = useSelector((state) => state.genres);
-    const filteredMovies = useMemo(() => {
-      let movies = [...movieSearchedFor];
-  
-      if (selectedFilter === 'Old') {
-          movies.sort((a, b) => parseInt(a.Year) - parseInt(b.Year));
-      } else if (selectedFilter === 'New') {
-          movies.sort((a, b) => parseInt(b.Year) - parseInt(a.Year));
-      } else if (selectedFilter === 'Rating') {
-          movies.sort((a, b) => parseFloat(b.imdbRating) - parseFloat(a.imdbRating));
-      }
-  
-      if (selectedGenre !== 'All') {
-          movies = movies.filter((movie) => movie.Genre.split(', ').includes(selectedGenre));
-      }
-  
-      return movies;
-  }, [selectedGenre, selectedFilter, movieSearchedFor]);
+    const totalMovies = useSelector((state) => state.totalMovies);
+    const [filteredMovies, setFilteredMovies] = useState([]);
+
+    useEffect(() => {
+        let movies = [...movieSearchedFor];
+
+        if (selectedFilter === 'Old') {
+            movies.sort((a, b) => parseInt(a.Year) - parseInt(b.Year));
+        } else if (selectedFilter === 'New') {
+            movies.sort((a, b) => parseInt(b.Year) - parseInt(a.Year));
+        } else if (selectedFilter === 'Rating') {
+            movies.sort((a, b) => parseFloat(b.imdbRating) - parseFloat(a.imdbRating));
+        }
+
+        if (selectedGenre !== 'All') {
+            movies = movies.filter((movie) => movie.Genre.split(', ').includes(selectedGenre));
+        }
+
+        setFilteredMovies(movies);
+    }, [selectedGenre, selectedFilter, movieSearchedFor, totalMovies]);
 
     return (
         <div className="movie-page">
@@ -43,21 +46,21 @@ const SearchPage = () => {
                     <Dropdown.Menu className='genre-menu'>
                         <NavDropdown title="Genre" id="genre-dropdown">
                             {genres.map((genre, index) => (
-                                <NavDropdown.Item style={{backgroundColor:'#181818'}} key={index} onClick={() => setSelectedGenre(genre)}>
+                                <NavDropdown.Item className='genre-item' style={{ backgroundColor: '#181818' }} key={index} onClick={() => setSelectedGenre(genre)}>
                                     {genre}
                                 </NavDropdown.Item>
                             ))}
                         </NavDropdown>
-                        <Dropdown.Item onClick={() => setSelectedFilter('Rating')}>Rating Wise</Dropdown.Item>
-                        <Dropdown.Item onClick={() => setSelectedFilter('New')}>Newest</Dropdown.Item>
-                        <Dropdown.Item onClick={() => setSelectedFilter('Old')}>Oldest</Dropdown.Item>
+                        <Dropdown.Item className='genre-item' onClick={() => setSelectedFilter('Rating')}><span>Rating Wise</span></Dropdown.Item>
+                        <Dropdown.Item className='genre-item' onClick={() => setSelectedFilter('New')}><span>Newest</span></Dropdown.Item>
+                        <Dropdown.Item className='genre-item' onClick={() => setSelectedFilter('Old')}><span>Oldest</span></Dropdown.Item>
                     </Dropdown.Menu>
                 </Dropdown>
             </div>
             <div className="movies-body">
                 {filteredMovies.length > 0 ? (
-                    filteredMovies.map((movie, index) => (
-                        <MovieSpecificCard key={index} movie={movie} />
+                    filteredMovies.map((movie) => (
+                        <MovieSpecificCard key={movie.imdbID} movie={movie} />
                     ))
                 ) : (
                     <h2 style={{ color: 'white', textAlign: 'center' }}>

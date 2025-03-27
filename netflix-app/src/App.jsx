@@ -19,6 +19,7 @@ import SearchPage from './pages/SearchPage/SearchPage'
 import MyList from './pages/MyList/MyList'
 import NotFound from './pages/Page404/NotFound'
 import "react-toastify/dist/ReactToastify.css";
+import { Toaster } from 'react-hot-toast';
 function App() {
   const { isSearching, setIsSearching } = useContext(searchContext);
   const { isDark } = useContext(themeContext)
@@ -26,6 +27,9 @@ function App() {
     <>
       <div className='app-div' style={{ width: '100vw', padding: '0px', boxSizing: 'border-box', backgroundColor: isDark ? '#181818' : '#d1d8e0', margin: 'auto', top: '-10px', transition: '0.3s ease-in-out' }}>
         <NavBar />
+        <Toaster
+          position="top-center"
+        />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/info/:imdbId' element={<MovieInfo />} />

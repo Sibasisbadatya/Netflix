@@ -8,10 +8,9 @@ import CommonPageEnding from '../CommonPageEnding/CommonPageEnding';
 const MyList = () => {
     const allMovies = useSelector((state) => state.totalMovies) || [];
     const [myList, setFavMovies] = useState([]);
-    const {isDark} = useContext(themeContext)
+    const { isDark } = useContext(themeContext)
     useEffect(() => {
         const movies = allMovies.filter((movie) => movie.isListAdded === true);
-
         setFavMovies(movies);
     }, [allMovies])
 
@@ -26,14 +25,16 @@ const MyList = () => {
                     </div>
                 </div>
                 <div className='movies-body'>
-                    {
-                        myList.map((moviesList, index) => {
-                            return <MovieSpecificCard key={index} movie={moviesList} />
-                        })
-                    }
+                    {myList.length > 0 ? (
+                        myList.map((movie, index) => (
+                            <MovieSpecificCard key={index} movie={movie} />
+                        ))
+                    ) : (
+                        <h2 style={{ color: isDark ? 'white' : '#e50914' }}>No Listed Movies</h2>
+                    )}
                 </div>
             </div>
-            <CommonPageEnding/>
+            <CommonPageEnding />
 
         </>
     )
