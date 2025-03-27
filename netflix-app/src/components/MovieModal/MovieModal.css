@@ -51,3 +51,14 @@
         top: 5rem;
     }
 }
+@media (max-width:880px){
+   
+.modal-div .modal-dialog {
+    width: 80vw;
+    max-width: 70vw;
+    height: 70vh;
+    margin: auto;
+    top: 5rem;
+    overflow: hidden;
+}
+}
