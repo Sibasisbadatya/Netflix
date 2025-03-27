@@ -56,7 +56,7 @@ const NavBar = () => {
                     <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>Home</NavLink>
                     <NavLink to="/movies" className={({ isActive }) => (isActive ? "active" : "")}>Movies</NavLink>
                     <NavLink to="/latest" className={({ isActive }) => (isActive ? "active" : "")}>Latest</NavLink>
-                    <NavLink to="/list" className={({ isActive }) => (isActive ? "active" : "")}>My List</NavLink>
+                    <NavLink to="/list" className={({ isActive }) => (isActive ? "active" : "")}>Lists</NavLink>
                     <NavLink to="/favourites" className={({ isActive }) => (isActive ? "active" : "")}>Favourites</NavLink>
                 </nav>
 
