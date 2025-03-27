@@ -77,8 +77,7 @@ export const movieReducer = (state = initialState, action) => {
             return { ...state, loading: false };
 
         case SEARCH_MOVIE_BY_ID: {
-            const movie = state.totalMovies.find(movie => movie.imdbID === action.payload) || null;
-            return { ...state, currMovieInfo: movie ? { ...movie } : null };
+            return { ...state, currMovieInfo: action.payload };
         }
 
         default:

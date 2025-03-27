@@ -33,22 +33,23 @@ export const setList = (movie, flag) => {
     );
 
     localStorage.setItem(movieDataKey, JSON.stringify(updatedMovies));
-    localStorage.setItem(currMovieKey, JSON.stringify({ ...movie, isListAdded: flag }));
-
     return { type: SET_LIST, payload: updatedMovies, movieId: movie.imdbID, flag };
 };
 
 export const setFavourite = (movie, flag) => {
     const allMovies = JSON.parse(localStorage.getItem(movieDataKey)) || [];
-
     const updatedMovies = allMovies.map((mov) =>
         mov.imdbID === movie.imdbID ? { ...mov, isFav: flag } : mov
     );
 
     localStorage.setItem(movieDataKey, JSON.stringify(updatedMovies));
-    localStorage.setItem(currMovieKey, JSON.stringify({ ...movie, isFav: flag }));
 
     return { type: SET_FAVOURITE, payload: updatedMovies, movieId: movie.imdbID, flag };
 };
 
-export const setCurrentMovie = (imdbId) => ({ type: SEARCH_MOVIE_BY_ID, payload: imdbId });
+export const setCurrentMovie = (imdbId) => {
+    const allMovies = JSON.parse(localStorage.getItem(movieDataKey)) || [];
+    const movie = allMovies.find((movie) => movie.imdbID === imdbId) || null;
+    localStorage.setItem(currMovieKey, JSON.stringify(movie));
+    return { type: SEARCH_MOVIE_BY_ID, payload: movie }
+};

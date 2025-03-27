@@ -11,6 +11,7 @@ import Logo from '../assets/Netflix.png'
 import MovieModal from './MovieModal/MovieModal'
 function HomeBannerCarousel() {
   const totalMovies = useSelector((state) => state.totalMovies);
+  
   const slides = totalMovies.sort((a, b) => (b.Year - a.Year)).slice(0, 5);
   const dispatch = useDispatch();
 

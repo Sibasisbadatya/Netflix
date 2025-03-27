@@ -13,9 +13,7 @@ const MovieInfoComponent = () => {
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        // dispatch(requestData());
         dispatch(setCurrentMovie(imdbId))
-        // dispatch(setSuccess());
       } catch (err) {
         // dispatch(setError(err.message));
       }
