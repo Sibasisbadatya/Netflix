@@ -20,7 +20,7 @@ const MovieInfoComponent = () => {
     };
 
     fetchMovie();
-  }, [dispatch, imdbId, currMovie]);
+  }, [dispatch, imdbId]);
 
   return (
     <div className="movie-details">
